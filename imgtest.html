@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        h4{
+            text-align: center;
+        }
+        .case{
+            width: 500px;
+            height: 650px;
+            border: 1px solid #c28f8f;
+            margin:50px auto;
+        }
+        .content{
+            margin: 40px auto;
+            width: 450px;
+            height: 450px;
+            border: 1px solid #000;
+            /* 缩进2字符 */
+            border-radius: 8px; 
+             /*文本两端对齐  */
+             text-align: justify;
+            overflow: hidden;
+        }
+        .content img{
+            width: 100%;
+            height: 100%;
+            transition-duration: 0.5s;
+        }
+        
+        .text{
+            width: 450px;
+            height: 100px;
+            margin: 0 auto;
+            text-indent: 2em;
+            border: 1px solid #000000;
+        }
+        .case:hover img{
+            transform: scale(1.2);
+        }
+        .case:hover p{
+            color:#ed8614;
+        }
+    </style>
+</head>
+<body>
+    <h4>鼠标悬浮时图片放大</h4>
+    <div class="case">
+        <div class="content">
+            <img src="img/1.jpg" alt="">
+        </div>
+        <p class="text">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+    </div>
+    
+    <script>
+
+    </script>
+</body>
+</html>

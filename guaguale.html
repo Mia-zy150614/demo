@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <style type="text/css">
+    #app{
+        width: 400px;
+        height: 200px;
+        border-top: 3px solid #F56C6C;
+        border-right: 3px solid #409eff;
+        border-bottom: 3px solid #e6a23c;
+        border-left: 3px solid #67c23a;
+    }
+    h3{
+        color: #f00;
+        text-align: center;
+    }
+	.ggk{
+		width:200px;
+		height: 100px;
+		border:1px solid #ccc;
+		margin:0 auto;
+		color:red;
+		position: relative;
+	}
+	.ggk p{
+        margin: 0;
+        padding: 0;
+		position: absolute;
+		width:100%;
+		height: 100%;
+		text-align: center;
+		font-size:50px;
+		line-height: 100px;
+        /* 文字不可选中 */
+        -moz-user-select: none; /*火狐*/
+        -webkit-user-select: none;  /*webkit浏览器*/
+        -ms-user-select: none;   /*IE10*/
+        -khtml-user-select: none; /*早期浏览器*/
+        user-select: none;
+	}
+	canvas{
+		position: absolute;
+		left:0;
+		top:0;
+	}
+	</style>
+</head>
+<body>
+<div id="app">
+    <h3>刮刮乐</h3>
+    <div class='ggk'>
+        <p id='span'>2元</p>
+        <canvas id='canvas'></canvas>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+var canvas = document.getElementById("canvas");
+init();
+
+function init(){
+	canvas.width = 200;
+	canvas.height = 100;
+	var ctx = canvas.getContext("2d");
+	productResult();
+	drawCover(ctx);
+	drawStroke(ctx);
+
+}
+//往span内填充内容
+function productResult(){
+	var span = document.getElementById("span");
+	var arr = ['10元','5元','200元','30元','谢谢','谢谢','谢谢','谢谢','谢谢','谢谢','谢谢','谢谢'];
+	var text = arr[randomInt(0,arr.length-1)];
+	span.innerHTML = text;
+}	
+//产生随机值
+function randomInt(from,to){
+	return parseInt( Math.random()*(to-from+1)+from );
+}
+//绘制覆盖层==》灰色
+function drawCover(ctx){
+	ctx.save();
+	ctx.fillStyle = "rgb(100,100,100)";
+	ctx.fillRect(0,0,200,100);
+	ctx.restore();
+}
+function  drawStroke(ctx){
+
+	canvas.onmousedown = function(e){
+
+		var downX = e.offsetX;
+		var downY = e.offsetY;
+		ctx.beginPath();
+		ctx.globalCompositeOperation = 'destination-out';
+		ctx.lineWidth = 20;
+		ctx.moveTo(downX,downY);
+
+		canvas.onmousemove = function(e){
+			var x = e.offsetX;
+			var y = e.offsetY;
+			ctx.lineTo(x,y);
+			ctx.stroke();
+		}
+
+	}
+	canvas.onmouseup = function(){
+		canvas.onmousemove = null;
+	}
+
+}
+
+</script>
+</body>
+</html>
